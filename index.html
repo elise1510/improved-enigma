@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>My Electron App</title>
+  </head>
+  <body>
+    <textarea id="myTextArea"></textarea>
+    <script>
+      window.textArea = document.getElementById('myTextArea');
+    </script>
+    <script src="./main.js"></script>
+    <script>
+        const { ipcRenderer } = require('electron');
+      
+        ipcRenderer.on('get-textarea', () => {
+          ipcRenderer.send('send-textarea', document.getElementById('myTextArea'));
+        });
+      </script>
+     <script src="./node_modules/electron/dist/renderer.js"></script>
+
+
+  </body>
+</html>
